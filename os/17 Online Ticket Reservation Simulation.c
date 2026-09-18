@@ -1,0 +1,1 @@
+// 17	Online Ticket Reservation Simulation: Develop a program to simulate online ticket reservation with the implementation of a write lock. Write one program to open a file, store a ticket number, and exit. Write a separate program to open the file, implement a write lock, read the ticket number, increment the number, print the new ticket number, and then close the file. 
