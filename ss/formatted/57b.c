@@ -99,18 +99,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 57b.c
- * Example runtime:
- * $ gcc 57b.c -o 57b
- * $ ./57b
- *
- * Max processes per user: 1024
- */
-
-/*
- * Actual output of 57b.c
+ * Output
  * Command: gcc 57b.c -o 57b
  *
  * ./57b.c: In function ‘main’:

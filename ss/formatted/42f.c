@@ -64,18 +64,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 42f.c
- * Example runtime:
- * $ gcc 42f.c -o 42f
- * $ ./42f
- *
- * Number of messages: 0
- */
-
-/*
- * Actual output of 42f.c
+ * Output
  * Command: gcc 42f.c -o 42f
  *
  * Usage: /tmp/ss_run_42f_48157 <message_queue_id>

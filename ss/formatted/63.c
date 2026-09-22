@@ -45,18 +45,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 63.c
- * Example runtime:
- * $ gcc 63.c -o 63
- * $ ./63
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 63.c
+ * Output
  * Command: gcc 63.c -o 63
  *
  * Child (PID: 48961) started, Parent PID: 48960

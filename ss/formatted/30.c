@@ -84,18 +84,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 30.c
- * Example runtime:
- * $ gcc 30.c -o 30
- * $ ./30
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 30.c
+ * Output
  * Command: gcc 30.c -o 30
  *
  * ./30.c: In function ‘main’:

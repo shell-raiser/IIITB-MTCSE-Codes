@@ -78,18 +78,8 @@ int main(int argc, char *argv[]) {
    echo -e "Line 1\nLine 2\nLine 3\nLine 4\nLine 5" > testfile.txt
    ./8_readonly_read testfile.txt
 */
-
 /*
- * Sample output for 8.c
- * Example runtime:
- * $ gcc 8.c -o 8
- * $ ./8
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 8.c
+ * Output
  * Command: gcc 8.c -o 8
  *
  * Usage: /tmp/ss_run_8_48157 <filename>

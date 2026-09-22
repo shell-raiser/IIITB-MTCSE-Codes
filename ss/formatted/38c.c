@@ -99,9 +99,8 @@ int main(void) {
     unlink(SERVER_TO_CLIENT);
     return 0;
 }
-
 /*
- * Actual output of 38c.c
+ * Output
  * Command: gcc 38c.c -o 38c && ./38c
  *
  * Parent server is running...

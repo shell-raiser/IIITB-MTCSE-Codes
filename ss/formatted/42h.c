@@ -64,18 +64,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 42h.c
- * Example runtime:
- * $ gcc 42h.c -o 42h
- * $ ./42h
- *
- * Last sender PID: 1234
- */
-
-/*
- * Actual output of 42h.c
+ * Output
  * Command: gcc 42h.c -o 42h
  *
  * Usage: /tmp/ss_run_42h_48157 <message_queue_id>

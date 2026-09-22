@@ -74,18 +74,8 @@ int main() {
    The 10 null bytes (\0) are the "hole" created by lseek.
    File size will be 30 bytes but only 20 bytes of actual data.
 */
-
 /*
- * Sample output for 10.c
- * Example runtime:
- * $ gcc 10.c -o 10
- * $ ./10
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 10.c
+ * Output
  * Command: gcc 10.c -o 10
  *
  * File opened with fd: 3

@@ -46,18 +46,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 45.c
- * Example runtime:
- * $ gcc 45.c -o 45
- * $ ./45
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 45.c
+ * Output
  * Command: gcc 45.c -o 45
  *
  * Usage: /tmp/ss_run_45_48157 <message_queue_id> <octal_permissions>

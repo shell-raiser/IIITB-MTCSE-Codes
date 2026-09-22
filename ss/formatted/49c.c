@@ -158,18 +158,8 @@ int main() {
     counting_semaphore_demo();
     return 0;
 }
-
 /*
- * Sample output for 49c.c
- * Example runtime:
- * $ gcc 49c.c -o 49c
- * $ ./49c
- *
- * Process 0: Got resource!
- */
-
-/*
- * Actual output of 49c.c
+ * Output
  * Command: gcc 49c.c -o 49c
  *
  * Program timed out after 10 seconds while running.

@@ -74,18 +74,8 @@ int main(int argc, char *argv[]) {
    printenv
    echo $HOME
 */
-
 /*
- * Sample output for 15.c
- * Example runtime:
- * $ gcc 15.c -o 15
- * $ ./15
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 15.c
+ * Output
  * Command: gcc 15.c -o 15
  *
  * Environment Variables:

@@ -158,18 +158,8 @@ int main() {
     counting_semaphore_demo();
     return 0;
 }
-
 /*
- * Sample output for 49a.c
- * Example runtime:
- * $ gcc 49a.c -o 49a
- * $ ./49a
- *
- * Parent: Ticket 100
- */
-
-/*
- * Actual output of 49a.c
+ * Output
  * Command: gcc 49a.c -o 49a
  *
  * Program timed out after 10 seconds while running.

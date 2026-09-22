@@ -158,18 +158,8 @@ int main(int argc, char *argv[]) {
     close(fd);
     return 0;
 }
-
 /*
- * Sample output for 18a.c
- * Example runtime:
- * $ gcc 18a.c -o 18a
- * $ ./18a
- *
- * Write lock acquired on record 1
- */
-
-/*
- * Actual output of 18a.c
+ * Output
  * Command: gcc 18a.c -o 18a
  *
  * Usage: /tmp/ss_run_18a_48157 <init|write|read> [record_num] [data]

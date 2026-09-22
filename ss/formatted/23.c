@@ -26,18 +26,8 @@ int main() {
     }
     return 0;
 }
-
 /*
- * Sample output for 23.c
- * Example runtime:
- * $ gcc 23.c -o 23
- * $ ./23
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 23.c
+ * Output
  * Command: gcc 23.c -o 23
  *
  * Parent (PID: 48355) exiting immediately

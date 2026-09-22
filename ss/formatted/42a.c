@@ -64,18 +64,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 42a.c
- * Example runtime:
- * $ gcc 42a.c -o 42a
- * $ ./42a
- *
- * Access permissions: 600
- */
-
-/*
- * Actual output of 42a.c
+ * Output
  * Command: gcc 42a.c -o 42a
  *
  * Usage: /tmp/ss_run_42a_48157 <message_queue_id>

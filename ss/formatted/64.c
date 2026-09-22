@@ -57,18 +57,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 64.c
- * Example runtime:
- * $ gcc 64.c -o 64
- * $ ./64
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 64.c
+ * Output
  * Command: gcc 64.c -o 64
  *
  * ./64.c: In function ‘main’:

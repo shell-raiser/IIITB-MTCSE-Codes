@@ -61,18 +61,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 55.c
- * Example runtime:
- * $ gcc 55.c -o 55
- * $ ./55
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 55.c
+ * Output
  * Command: gcc 55.c -o 55
  *
  * ./55.c: In function ‘set_limit’:

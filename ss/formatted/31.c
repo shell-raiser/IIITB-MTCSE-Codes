@@ -40,18 +40,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 31.c
- * Example runtime:
- * $ gcc 31.c -o 31
- * $ ./31
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 31.c
+ * Output
  * Command: gcc 31.c -o 31
  *
  * ./31.c: In function ‘main’:

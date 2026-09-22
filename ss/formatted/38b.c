@@ -43,9 +43,8 @@ int main(void) {
     close(resp_fd);
     return 0;
 }
-
 /*
- * Actual output of 38b.c
+ * Output
  * Command: gcc 38b.c -o 38b && ./38b
  *
  * Client sent: Hello server

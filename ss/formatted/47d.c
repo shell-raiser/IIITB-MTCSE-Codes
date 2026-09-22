@@ -80,18 +80,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 47d.c
- * Example runtime:
- * $ gcc 47d.c -o 47d
- * $ ./47d
- *
- * Shared memory removed
- */
-
-/*
- * Actual output of 47d.c
+ * Output
  * Command: gcc 47d.c -o 47d
  *
  * Shared memory created: ID=16, Key=0x533664f1

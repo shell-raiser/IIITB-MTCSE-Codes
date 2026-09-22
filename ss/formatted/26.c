@@ -70,18 +70,8 @@ int main(int argc, char *argv[]) {
     }
     return 0;
 }
-
 /*
- * Sample output for 26.c
- * Example runtime:
- * $ gcc 26.c -o 26
- * $ ./26
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 26.c
+ * Output
  * Command: gcc 26.c -o 26
  *
  * Usage: /tmp/ss_run_26_48157 <a|b|c|d|e>

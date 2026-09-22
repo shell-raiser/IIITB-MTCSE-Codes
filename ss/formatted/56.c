@@ -68,18 +68,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 56.c
- * Example runtime:
- * $ gcc 56.c -o 56
- * $ ./56
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 56.c
+ * Output
  * Command: gcc 56.c -o 56
  *
  * ./56.c: In function ‘main’:

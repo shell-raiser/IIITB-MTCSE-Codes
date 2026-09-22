@@ -62,9 +62,8 @@ int main(void) {
     unlink(SERVER_TO_CLIENT);
     return 0;
 }
-
 /*
- * Actual output of 38a.c
+ * Output
  * Command: gcc 38a.c -o 38a && ./38a &
  *
  * Server ready. Waiting for client...

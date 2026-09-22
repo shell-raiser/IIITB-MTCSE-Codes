@@ -92,18 +92,8 @@ int main(int argc, char const *argv[])
    ls -li target.txt softlink.txt hardlink.txt myfifo_mkfifo myfifo_mknod
    file target.txt softlink.txt hardlink.txt myfifo_mkfifo myfifo_mknod
 */
-
 /*
- * Sample output for 1b.c
- * Example runtime:
- * $ gcc 1b.c -o 1b
- * $ ./1b
- *
- * Hard link created: hardlink.txt -> target.txt
- */
-
-/*
- * Actual output of 1b.c
+ * Output
  * Command: gcc 1b.c -o 1b
  *
  * target.txt (Regular file):

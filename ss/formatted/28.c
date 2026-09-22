@@ -50,18 +50,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 28.c
- * Example runtime:
- * $ gcc 28.c -o 28
- * $ ./28
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 28.c
+ * Output
  * Command: gcc 28.c -o 28
  *
  * ./28.c: In function ‘main’:

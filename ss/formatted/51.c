@@ -139,18 +139,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 51.c
- * Example runtime:
- * $ gcc 51.c -o 51
- * $ ./51
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 51.c
+ * Output
  * Command: gcc 51.c -o 51
  *
  * Usage: /tmp/ss_run_51_48157 <server|client> [server_ip]

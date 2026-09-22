@@ -39,18 +39,8 @@ int main() {
     printf("\nAll threads completed\n");
     return 0;
 }
-
 /*
- * Sample output for 58.c
- * Example runtime:
- * $ gcc 58.c -o 58
- * $ ./58
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 58.c
+ * Output
  * Command: gcc 58.c -o 58
  *
  * Main thread TID: 139701260203840

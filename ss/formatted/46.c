@@ -24,18 +24,8 @@ int main(int argc, char *argv[]) {
     printf("Message queue %d removed successfully\n", msgid);
     return 0;
 }
-
 /*
- * Sample output for 46.c
- * Example runtime:
- * $ gcc 46.c -o 46
- * $ ./46
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 46.c
+ * Output
  * Command: gcc 46.c -o 46
  *
  * Usage: /tmp/ss_run_46_48157 <message_queue_id>

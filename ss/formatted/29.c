@@ -72,18 +72,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 29.c
- * Example runtime:
- * $ gcc 29.c -o 29
- * $ ./29
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 29.c
+ * Output
  * Command: gcc 29.c -o 29
  *
  * ./29.c: In function ‘print_policy’:

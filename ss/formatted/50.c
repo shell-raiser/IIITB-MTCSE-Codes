@@ -80,18 +80,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 50.c
- * Example runtime:
- * $ gcc 50.c -o 50
- * $ ./50
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 50.c
+ * Output
  * Command: gcc 50.c -o 50
  *
  * Program timed out after 10 seconds while running.

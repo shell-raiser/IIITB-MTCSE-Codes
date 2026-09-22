@@ -94,18 +94,8 @@ int main(int argc, char *argv[]) {
    diff source.txt destination.txt
    ls -l source.txt destination.txt
 */
-
 /*
- * Sample output for 7.c
- * Example runtime:
- * $ gcc 7.c -o 7
- * $ ./7
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 7.c
+ * Output
  * Command: gcc 7.c -o 7
  *
  * Usage: /tmp/ss_run_7_48157 <source_file> <dest_file>

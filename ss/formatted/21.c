@@ -37,18 +37,8 @@ int main() {
     close(fd);
     return 0;
 }
-
 /*
- * Sample output for 21.c
- * Example runtime:
- * $ gcc 21.c -o 21
- * $ ./21
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 21.c
+ * Output
  * Command: gcc 21.c -o 21
  *
  * Child wrote to file

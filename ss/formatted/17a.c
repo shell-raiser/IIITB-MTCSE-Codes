@@ -66,18 +66,8 @@ int main() {
     close(fd);
     return 0;
 }
-
 /*
- * Sample output for 17a.c
- * Example runtime:
- * $ gcc 17a.c -o 17a
- * $ ./17a
- *
- * Ticket file initialized with ticket number: 1000
- */
-
-/*
- * Actual output of 17a.c
+ * Output
  * Command: gcc 17a.c -o 17a
  *
  * open failed (run init program first): No such file or directory

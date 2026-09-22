@@ -24,18 +24,8 @@ int main() {
     }
     return 0;
 }
-
 /*
- * Sample output for 20.c
- * Example runtime:
- * $ gcc 20.c -o 20
- * $ ./20
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 20.c
+ * Output
  * Command: gcc 20.c -o 20
  *
  * ./20.c: In function ‘main’:

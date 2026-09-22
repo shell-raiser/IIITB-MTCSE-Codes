@@ -34,18 +34,8 @@ int main() {
     unlink(fifo_path);
     return 0;
 }
-
 /*
- * Sample output for 37.c
- * Example runtime:
- * $ gcc 37.c -o 37
- * $ ./37
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 37.c
+ * Output
  * Command: gcc 37.c -o 37
  *
  * Program timed out after 10 seconds while running.

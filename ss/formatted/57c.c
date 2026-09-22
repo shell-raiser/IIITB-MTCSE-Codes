@@ -99,18 +99,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 57c.c
- * Example runtime:
- * $ gcc 57c.c -o 57c
- * $ ./57c
- *
- * Clock ticks per second: 100
- */
-
-/*
- * Actual output of 57c.c
+ * Output
  * Command: gcc 57c.c -o 57c
  *
  * ./57c.c: In function ‘main’:

@@ -48,18 +48,8 @@ int main(int argc, char *argv[]) {
     printf("Check with: ipcs -q\n");
     return 0;
 }
-
 /*
- * Sample output for 43.c
- * Example runtime:
- * $ gcc 43.c -o 43
- * $ ./43
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 43.c
+ * Output
  * Command: gcc 43.c -o 43
  *
  * Usage: /tmp/ss_run_43_48157 <message_queue_id>

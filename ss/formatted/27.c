@@ -38,18 +38,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 27.c
- * Example runtime:
- * $ gcc 27.c -o 27
- * $ ./27
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 27.c
+ * Output
  * Command: gcc 27.c -o 27
  *
  * Real-time priority range (SCHED_FIFO):

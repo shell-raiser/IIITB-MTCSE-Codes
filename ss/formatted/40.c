@@ -76,18 +76,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 40.c
- * Example runtime:
- * $ gcc 40.c -o 40
- * $ ./40
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 40.c
+ * Output
  * Command: gcc 40.c -o 40
  *
  * ./40.c: In function ‘main’:

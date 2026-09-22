@@ -64,18 +64,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 42b.c
- * Example runtime:
- * $ gcc 42b.c -o 42b
- * $ ./42b
- *
- * Owner UID: 1000, GID: 1000
- */
-
-/*
- * Actual output of 42b.c
+ * Output
  * Command: gcc 42b.c -o 42b
  *
  * Usage: /tmp/ss_run_42b_48157 <message_queue_id>

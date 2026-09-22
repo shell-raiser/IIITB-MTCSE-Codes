@@ -66,18 +66,8 @@ int main() {
     close(fd);
     return 0;
 }
-
 /*
- * Sample output for 17b.c
- * Example runtime:
- * $ gcc 17b.c -o 17b
- * $ ./17b
- *
- * Write lock acquired on record 1
- */
-
-/*
- * Actual output of 17b.c
+ * Output
  * Command: gcc 17b.c -o 17b
  *
  * open failed (run init program first): No such file or directory

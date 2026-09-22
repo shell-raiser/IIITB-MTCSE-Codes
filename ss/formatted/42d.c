@@ -64,18 +64,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 42d.c
- * Example runtime:
- * $ gcc 42d.c -o 42d
- * $ ./42d
- *
- * Last change time: ...
- */
-
-/*
- * Actual output of 42d.c
+ * Output
  * Command: gcc 42d.c -o 42d
  *
  * Usage: /tmp/ss_run_42d_48157 <message_queue_id>

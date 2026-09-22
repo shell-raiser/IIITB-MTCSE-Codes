@@ -152,18 +152,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 52b.c
- * Example runtime:
- * $ gcc 52b.c -o 52b
- * $ ./52b
- *
- * Thread server listening on port 8082...
- */
-
-/*
- * Actual output of 52b.c
+ * Output
  * Command: gcc 52b.c -o 52b
  *
  * Usage: /tmp/ss_run_52b_48157 <fork|thread>

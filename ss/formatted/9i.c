@@ -105,18 +105,8 @@ int main(int argc, char *argv[]) {
    ./9_file_info /etc/passwd
    ./9_file_info /dev/null
 */
-
 /*
- * Sample output for 9i.c
- * Example runtime:
- * $ gcc 9i.c -o 9i
- * $ ./9i
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 9i.c
+ * Output
  * Command: gcc 9i.c -o 9i
  *
  * Usage: /tmp/ss_run_9i_48157 <filename>

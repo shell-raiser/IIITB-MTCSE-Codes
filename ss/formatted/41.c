@@ -43,18 +43,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 41.c
- * Example runtime:
- * $ gcc 41.c -o 41
- * $ ./41
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 41.c
+ * Output
  * Command: gcc 41.c -o 41
  *
  * Generated key: 0x413664f1

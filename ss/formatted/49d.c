@@ -158,18 +158,8 @@ int main() {
     counting_semaphore_demo();
     return 0;
 }
-
 /*
- * Sample output for 49d.c
- * Example runtime:
- * $ gcc 49d.c -o 49d
- * $ ./49d
- *
- * Semaphore removed
- */
-
-/*
- * Actual output of 49d.c
+ * Output
  * Command: gcc 49d.c -o 49d
  *
  * Program timed out after 10 seconds while running.

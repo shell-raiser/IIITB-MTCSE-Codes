@@ -152,18 +152,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 52a.c
- * Example runtime:
- * $ gcc 52a.c -o 52a
- * $ ./52a
- *
- * Fork server listening on port 8081...
- */
-
-/*
- * Actual output of 52a.c
+ * Output
  * Command: gcc 52a.c -o 52a
  *
  * Usage: /tmp/ss_run_52a_48157 <fork|thread>

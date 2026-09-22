@@ -137,18 +137,8 @@ int main(int argc, char *argv[]) {
    echo "test content" > testfile.txt
    ./12_open_mode testfile.txt
 */
-
 /*
- * Sample output for 12.c
- * Example runtime:
- * $ gcc 12.c -o 12
- * $ ./12
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 12.c
+ * Output
  * Command: gcc 12.c -o 12
  *
  * Usage: /tmp/ss_run_12_48157 <filename>

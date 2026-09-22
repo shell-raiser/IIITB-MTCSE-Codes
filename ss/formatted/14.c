@@ -92,18 +92,8 @@ int main(int argc, char *argv[]) {
    mkfifo my_fifo
    ./14_file_type regular_file.txt test_dir symlink.txt my_fifo /dev/tty /dev/sda
 */
-
 /*
- * Sample output for 14.c
- * Example runtime:
- * $ gcc 14.c -o 14
- * $ ./14
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 14.c
+ * Output
  * Command: gcc 14.c -o 14
  *
  * Usage: /tmp/ss_run_14_48157 <file1> [file2] ...

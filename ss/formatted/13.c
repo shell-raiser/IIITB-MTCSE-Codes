@@ -73,18 +73,8 @@ int main() {
    ./13_select_stdin
    # Type "test" and press Enter
 */
-
 /*
- * Sample output for 13.c
- * Example runtime:
- * $ gcc 13.c -o 13
- * $ ./13
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 13.c
+ * Output
  * Command: gcc 13.c -o 13
  *
  * Waiting for input from STDIN for 10 seconds...

@@ -74,18 +74,8 @@ int main() {
     create_counting_semaphore();
     return 0;
 }
-
 /*
- * Sample output for 48.c
- * Example runtime:
- * $ gcc 48.c -o 48
- * $ ./48
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 48.c
+ * Output
  * Command: gcc 48.c -o 48
  *
  * === a. Binary Semaphore ===

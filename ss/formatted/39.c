@@ -58,18 +58,8 @@ int main() {
     unlink(fifo_path);
     return 0;
 }
-
 /*
- * Sample output for 39.c
- * Example runtime:
- * $ gcc 39.c -o 39
- * $ ./39
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 39.c
+ * Output
  * Command: gcc 39.c -o 39
  *
  * Program timed out after 10 seconds while running.

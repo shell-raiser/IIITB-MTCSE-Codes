@@ -92,18 +92,8 @@ int main(int argc, char const *argv[])
    ls -li target.txt softlink.txt hardlink.txt myfifo_mkfifo myfifo_mknod
    file target.txt softlink.txt hardlink.txt myfifo_mkfifo myfifo_mknod
 */
-
 /*
- * Sample output for 1c.c
- * Example runtime:
- * $ gcc 1c.c -o 1c
- * $ ./1c
- *
- * FIFO created using mkfifo: myfifo_mkfifo
- */
-
-/*
- * Actual output of 1c.c
+ * Output
  * Command: gcc 1c.c -o 1c
  *
  * target.txt (Regular file):

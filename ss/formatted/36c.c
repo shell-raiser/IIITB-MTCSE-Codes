@@ -57,18 +57,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 36c.c
- * Example runtime:
- * $ gcc 36c.c -o 36c
- * $ ./36c
- *
- * Run manually: strace -c mknod /tmp/test_mknod p
- */
-
-/*
- * Actual output of 36c.c
+ * Output
  * Command: gcc 36c.c -o 36c
  *
  * prw-r--r-- 1 kss kss 0 Sep 22 21:08 /tmp/myfifo_mknod

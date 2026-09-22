@@ -77,18 +77,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 61a.c
- * Example runtime:
- * $ gcc 61a.c -o 61a
- * $ ./61a
- *
- * SIGINT ignored temporarily
- */
-
-/*
- * Actual output of 61a.c
+ * Output
  * Command: gcc 61a.c -o 61a
  *
  * Usage: /tmp/ss_run_61a_48157 <a|b|c>

@@ -52,18 +52,8 @@ int main(void) {
     close(fd);
     return 0;
 }
-
 /*
- * Sample output for 16b.c
- * Example runtime:
- * $ gcc 16b.c -o 16b
- * $ ./16b
- *
- * Mandatory locking example: read lock requested
- */
-
-/*
- * Actual output of 16b.c
+ * Output
  * Command: gcc 16b.c -o 16b
  *
  * ./16b.c: In function ‘main’:

@@ -158,18 +158,8 @@ int main(int argc, char *argv[]) {
     close(fd);
     return 0;
 }
-
 /*
- * Sample output for 18b.c
- * Example runtime:
- * $ gcc 18b.c -o 18b
- * $ ./18b
- *
- * Read lock acquired on record 1
- */
-
-/*
- * Actual output of 18b.c
+ * Output
  * Command: gcc 18b.c -o 18b
  *
  * Usage: /tmp/ss_run_18b_48157 <init|write|read> [record_num] [data]

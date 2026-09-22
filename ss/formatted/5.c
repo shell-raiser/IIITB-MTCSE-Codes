@@ -76,18 +76,8 @@ int main() {
    # or
    kill <PID>
 */
-
 /*
- * Sample output for 5.c
- * Example runtime:
- * $ gcc 5.c -o 5
- * $ ./5
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 5.c
+ * Output
  * Command: gcc 5.c -o 5
  *
  * Program timed out after 10 seconds while running.

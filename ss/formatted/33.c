@@ -63,18 +63,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 33.c
- * Example runtime:
- * $ gcc 33.c -o 33
- * $ ./33
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 33.c
+ * Output
  * Command: gcc 33.c -o 33
  *
  * Child received: Hello

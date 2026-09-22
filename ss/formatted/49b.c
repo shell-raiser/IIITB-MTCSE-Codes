@@ -158,18 +158,8 @@ int main() {
     counting_semaphore_demo();
     return 0;
 }
-
 /*
- * Sample output for 49b.c
- * Example runtime:
- * $ gcc 49b.c -o 49b
- * $ ./49b
- *
- * Parent wrote: Parent write 0
- */
-
-/*
- * Actual output of 49b.c
+ * Output
  * Command: gcc 49b.c -o 49b
  *
  * Program timed out after 10 seconds while running.

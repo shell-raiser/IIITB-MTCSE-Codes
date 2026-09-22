@@ -83,18 +83,8 @@ int main() {
    cat testfile.txt
    cat newfile.txt
 */
-
 /*
- * Sample output for 4.c
- * Example runtime:
- * $ gcc 4.c -o 4
- * $ ./4
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 4.c
+ * Output
  * Command: gcc 4.c -o 4
  *
  * Created testfile.txt

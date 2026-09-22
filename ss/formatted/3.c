@@ -52,18 +52,8 @@ int main() {
    ./3_file_creation
    ls -l myfile.txt
 */
-
 /*
- * Sample output for 3.c
- * Example runtime:
- * $ gcc 3.c -o 3
- * $ ./3
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 3.c
+ * Output
  * Command: gcc 3.c -o 3
  *
  * File created successfully!

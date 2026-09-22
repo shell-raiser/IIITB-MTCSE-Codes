@@ -138,18 +138,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 59.c
- * Example runtime:
- * $ gcc 59.c -o 59
- * $ ./59
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 59.c
+ * Output
  * Command: gcc 59.c -o 59
  *
  * Usage: /tmp/ss_run_59_48157 <a|b|c|d|e|f|g>

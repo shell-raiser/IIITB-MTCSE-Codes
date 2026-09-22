@@ -45,18 +45,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 24.c
- * Example runtime:
- * $ gcc 24.c -o 24
- * $ ./24
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 24.c
+ * Output
  * Command: gcc 24.c -o 24
  *
  * Child 1 (PID: 48363) sleeping for 2 seconds

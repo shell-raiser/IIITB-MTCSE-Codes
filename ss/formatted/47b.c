@@ -80,18 +80,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 47b.c
- * Example runtime:
- * $ gcc 47b.c -o 47b
- * $ ./47b
- *
- * Read: Hello, Shared Memory!
- */
-
-/*
- * Actual output of 47b.c
+ * Output
  * Command: gcc 47b.c -o 47b
  *
  * Shared memory created: ID=14, Key=0x533664f1

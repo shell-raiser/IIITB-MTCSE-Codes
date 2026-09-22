@@ -50,18 +50,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 54.c
- * Example runtime:
- * $ gcc 54.c -o 54
- * $ ./54
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 54.c
+ * Output
  * Command: gcc 54.c -o 54
  *
  * System Resource Limits:

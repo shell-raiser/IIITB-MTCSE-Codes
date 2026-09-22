@@ -52,18 +52,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 32.c
- * Example runtime:
- * $ gcc 32.c -o 32
- * $ ./32
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 32.c
+ * Output
  * Command: gcc 32.c -o 32
  *
  * Child (PID: 48404) waiting for messages...

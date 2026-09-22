@@ -69,18 +69,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 35.c
- * Example runtime:
- * $ gcc 35.c -o 35
- * $ ./35
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 35.c
+ * Output
  * Command: gcc 35.c -o 35
  *
  * 0

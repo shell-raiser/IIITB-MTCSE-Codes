@@ -57,18 +57,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 36e.c
- * Example runtime:
- * $ gcc 36e.c -o 36e
- * $ ./36e
- *
- * Created FIFO with mkfifo library function
- */
-
-/*
- * Actual output of 36e.c
+ * Output
  * Command: gcc 36e.c -o 36e
  *
  * prw-r--r-- 1 kss kss 0 Sep 22 21:08 /tmp/myfifo_mknod

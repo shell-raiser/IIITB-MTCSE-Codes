@@ -121,18 +121,8 @@ int main() {
    ps aux | grep 2_bg_process
    ls -l /proc/<PID>/fd
 */
-
 /*
- * Sample output for 2.c
- * Example runtime:
- * $ gcc 2.c -o 2
- * $ ./2
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 2.c
+ * Output
  * Command: gcc 2.c -o 2
  *
  * Child process started with PID: 48307

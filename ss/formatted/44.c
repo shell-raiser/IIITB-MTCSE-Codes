@@ -56,18 +56,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 44.c
- * Example runtime:
- * $ gcc 44.c -o 44
- * $ ./44
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 44.c
+ * Output
  * Command: gcc 44.c -o 44
  *
  * Usage: /tmp/ss_run_44_48157 <message_queue_id> <message_type>

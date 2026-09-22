@@ -156,20 +156,8 @@ int main() {
    cat test_dup2.txt
    cat test_fcntl.txt
 */
-
 /*
- * Sample output for 11b.c
- * Example runtime:
- * $ gcc 11b.c -o 11b
- * $ ./11b
- *
- * === Test b: dup2() ===
- * Original fd: 3
- * Duplicated fd (dup2 to 10): 10
- */
-
-/*
- * Actual output of 11b.c
+ * Output
  * Command: gcc 11b.c -o 11b
  *
  * === Test a: dup() ===

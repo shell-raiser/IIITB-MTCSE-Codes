@@ -57,18 +57,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 36a.c
- * Example runtime:
- * $ gcc 36a.c -o 36a
- * $ ./36a
- *
- * Created FIFO with mknod syscall
- */
-
-/*
- * Actual output of 36a.c
+ * Output
  * Command: gcc 36a.c -o 36a
  *
  * prw-r--r-- 1 kss kss 0 Sep 22 21:08 /tmp/myfifo_mknod

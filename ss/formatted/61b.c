@@ -77,18 +77,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 61b.c
- * Example runtime:
- * $ gcc 61b.c -o 61b
- * $ ./61b
- *
- * SIGINT reset to default
- */
-
-/*
- * Actual output of 61b.c
+ * Output
  * Command: gcc 61b.c -o 61b
  *
  * Usage: /tmp/ss_run_61b_48157 <a|b|c>

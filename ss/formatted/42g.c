@@ -64,18 +64,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 42g.c
- * Example runtime:
- * $ gcc 42g.c -o 42g
- * $ ./42g
- *
- * Max queue size: 16384 bytes
- */
-
-/*
- * Actual output of 42g.c
+ * Output
  * Command: gcc 42g.c -o 42g
  *
  * Usage: /tmp/ss_run_42g_48157 <message_queue_id>

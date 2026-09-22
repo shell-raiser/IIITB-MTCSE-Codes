@@ -31,18 +31,8 @@ int main() {
     }
     return 0;
 }
-
 /*
- * Sample output for 22.c
- * Example runtime:
- * $ gcc 22.c -o 22
- * $ ./22
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 22.c
+ * Output
  * Command: gcc 22.c -o 22
  *
  * Program timed out after 10 seconds while running.

@@ -50,18 +50,8 @@ int main() {
     }
     return 0;
 }
-
 /*
- * Sample output for 19.c
- * Example runtime:
- * $ gcc 19.c -o 19
- * $ ./19
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 19.c
+ * Output
  * Command: gcc 19.c -o 19
  *
  * State:	S (sleeping)

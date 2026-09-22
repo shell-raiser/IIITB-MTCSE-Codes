@@ -37,18 +37,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 62b.c
- * Example runtime:
- * $ gcc 62b.c -o 62b
- * $ ./62b
- *
- * SIGINT reset to default
- */
-
-/*
- * Actual output of 62b.c
+ * Output
  * Command: gcc 62b.c -o 62b
  *
  * Program timed out after 10 seconds while running.

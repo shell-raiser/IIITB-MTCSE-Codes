@@ -52,18 +52,8 @@ int main(void) {
     close(fd);
     return 0;
 }
-
 /*
- * Sample output for 16a.c
- * Example runtime:
- * $ gcc 16a.c -o 16a
- * $ ./16a
- *
- * Mandatory locking example: write lock requested
- */
-
-/*
- * Actual output of 16a.c
+ * Output
  * Command: gcc 16a.c -o 16a
  *
  * ./16a.c: In function ‘main’:

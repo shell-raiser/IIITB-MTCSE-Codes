@@ -33,18 +33,8 @@ int main(int argc, char *argv[]) {
     }
     return 0;
 }
-
 /*
- * Sample output for 25.c
- * Example runtime:
- * $ gcc 25.c -o 25
- * $ ./25
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 25.c
+ * Output
  * Command: gcc 25.c -o 25
  *
  * Usage: /tmp/ss_run_25_48157 <program_to_execute> [args...]

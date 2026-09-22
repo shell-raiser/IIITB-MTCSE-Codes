@@ -111,18 +111,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 53.c
- * Example runtime:
- * $ gcc 53.c -o 53
- * $ ./53
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 53.c
+ * Output
  * Command: gcc 53.c -o 53
  *
  * Usage: /tmp/ss_run_53_48157 <a|b|c>

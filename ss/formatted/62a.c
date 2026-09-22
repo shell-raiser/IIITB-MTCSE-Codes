@@ -37,18 +37,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 62a.c
- * Example runtime:
- * $ gcc 62a.c -o 62a
- * $ ./62a
- *
- * SIGINT ignored temporarily
- */
-
-/*
- * Actual output of 62a.c
+ * Output
  * Command: gcc 62a.c -o 62a
  *
  * Program timed out after 10 seconds while running.

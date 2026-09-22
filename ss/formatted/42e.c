@@ -64,18 +64,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 42e.c
- * Example runtime:
- * $ gcc 42e.c -o 42e
- * $ ./42e
- *
- * Current queue size: 0 bytes
- */
-
-/*
- * Actual output of 42e.c
+ * Output
  * Command: gcc 42e.c -o 42e
  *
  * Usage: /tmp/ss_run_42e_48157 <message_queue_id>

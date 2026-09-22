@@ -64,18 +64,8 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
-
 /*
- * Sample output for 42c.c
- * Example runtime:
- * $ gcc 42c.c -o 42c
- * $ ./42c
- *
- * Last msgsnd time: ...
- */
-
-/*
- * Actual output of 42c.c
+ * Output
  * Command: gcc 42c.c -o 42c
  *
  * Usage: /tmp/ss_run_42c_48157 <message_queue_id>

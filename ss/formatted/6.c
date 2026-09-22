@@ -50,18 +50,8 @@ int main() {
    # Type some text, press Enter
    # Press Ctrl+D to end
 */
-
 /*
- * Sample output for 6.c
- * Example runtime:
- * $ gcc 6.c -o 6
- * $ ./6
- *
- * Program executed successfully.
- */
-
-/*
- * Actual output of 6.c
+ * Output
  * Command: gcc 6.c -o 6
  *
  * Enter text (Ctrl+D to end):

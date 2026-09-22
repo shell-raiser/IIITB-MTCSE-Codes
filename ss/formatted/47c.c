@@ -80,18 +80,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 47c.c
- * Example runtime:
- * $ gcc 47c.c -o 47c
- * $ ./47c
- *
- * Detached successfully
- */
-
-/*
- * Actual output of 47c.c
+ * Output
  * Command: gcc 47c.c -o 47c
  *
  * Shared memory created: ID=15, Key=0x533664f1

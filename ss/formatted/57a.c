@@ -99,18 +99,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 57a.c
- * Example runtime:
- * $ gcc 57a.c -o 57a
- * $ ./57a
- *
- * ARG_MAX = 2097152
- */
-
-/*
- * Actual output of 57a.c
+ * Output
  * Command: gcc 57a.c -o 57a
  *
  * ./57a.c: In function ‘main’:

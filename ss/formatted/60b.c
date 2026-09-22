@@ -27,18 +27,8 @@ int main() {
     
     return 0;
 }
-
 /*
- * Sample output for 60b.c
- * Example runtime:
- * $ gcc 60b.c -o 60b
- * $ ./60b
- *
- * SIGINT reset to default
- */
-
-/*
- * Actual output of 60b.c
+ * Output
  * Command: gcc 60b.c -o 60b
  *
  * Program timed out after 10 seconds while running.
