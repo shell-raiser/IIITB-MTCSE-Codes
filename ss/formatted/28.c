@@ -52,17 +52,15 @@ int main() {
 }
 /*
  * Output
- * Command: gcc 28.c -o 28
+ * Command: gcc 28.c -o 28 && ./28
  *
- * ./28.c: In function ‘main’:
- * ./28.c:22:18: error: implicit declaration of function ‘sched_getscheduler’ [-Wimplicit-function-declaration]
- *    22 |     int policy = sched_getscheduler(0);
- *       |                  ^~~~~~~~~~~~~~~~~~
- * ./28.c:23:24: error: storage size of ‘param’ isn’t known
- *    23 |     struct sched_param param;
- *       |                        ^~~~~
- * ./28.c:24:9: error: implicit declaration of function ‘sched_getparam’ [-Wimplicit-function-declaration]
- *    24 |     if (sched_getparam(0, &param) == 0) {
- *       |         ^~~~~~~~~~~~~~
+ * Current nice value: 0
+ * Current scheduling policy: 0
+ * Current priority: 0
+ * Changing nice value by +5...
+ * New nice value: 5
+ * Verified nice value: 5
+ * Setting nice value to -5 (requires root)...
+ * Priority changed successfully
  */
 

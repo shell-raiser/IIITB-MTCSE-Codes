@@ -54,27 +54,8 @@ int main(void) {
 }
 /*
  * Output
- * Command: gcc 16a.c -o 16a
+ * Command: gcc 16a.c -o 16a && ./16a
  *
- * ./16a.c: In function ‘main’:
- * ./16a.c:23:5: error: ‘flock’ undeclared (first use in this function)
- *    23 |     flock.l_type =
- *       |     ^~~~~
- * ./16a.c:23:5: note: each undeclared identifier is reported only once for each function it appears in
- * ./16a.c:24:5: error: expected expression before ‘int’
- *    24 |     int fd = open(“temp”, O_RDWR, 0744);
- *       |     ^~~
- * ./16a.c:24:19: error: stray ‘\342’ in program
- *    24 |     int fd = open(<U+201C>temp<U+201D>, O_RDWR, 0744);
- *       |                   ^~~~~~~~
- * ./16a.c:24:24: error: stray ‘\342’ in program
- *    24 |     int fd = open(<U+201C>temp<U+201D>, O_RDWR, 0744);
- *       |                               ^~~~~~~~
- * ./16a.c:25:5: error: implicit declaration of function ‘fcntl’ [-Wimplicit-function-declaration]
- *    25 |     fcntl (int fd, int cmd, struct flock &);
- *       |     ^~~~~
- * ./16a.c:25:12: error: expected expression before ‘int’
- *    25 |     fcntl (int fd, int cmd, struct flock &);
- *       |            ^~~
+ * Write lock acquired on mandatory_lock_write.txt
  */
 

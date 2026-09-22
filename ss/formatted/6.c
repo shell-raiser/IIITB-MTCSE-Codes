@@ -55,5 +55,9 @@ int main() {
  * Command: gcc 6.c -o 6
  *
  * Enter text (Ctrl+D to end):
+ * ls
+ * ls
+ * nice
+ * nice
  */
 

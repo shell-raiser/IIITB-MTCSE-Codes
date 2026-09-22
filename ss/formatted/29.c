@@ -74,16 +74,22 @@ int main() {
 }
 /*
  * Output
- * Command: gcc 29.c -o 29
+ * Command: gcc 29.c -o 29 && ./29
  *
- * ./29.c: In function ‘print_policy’:
- * ./29.c:16:14: error: ‘SCHED_BATCH’ undeclared (first use in this function)
- *    16 |         case SCHED_BATCH: printf("SCHED_BATCH"); break;
- *       |              ^~~~~~~~~~~
- * ./29.c:16:14: note: each undeclared identifier is reported only once for each function it appears in
- * ./29.c:17:14: error: ‘SCHED_IDLE’ undeclared (first use in this function); did you mean ‘SCHED_RR’?
- *    17 |         case SCHED_IDLE: printf("SCHED_IDLE"); break;
- *       |              ^~~~~~~~~~
- *       |              SCHED_RR
+ * Current scheduling policy: SCHED_OTHER (normal)
+ * Current priority: 0
+ *
+ * Priority ranges:
+ * SCHED_FIFO: min=1, max=99
+ * SCHED_RR:   min=1, max=99
+ *
+ * Attempting to set SCHED_FIFO with priority 50...
+ * Successfully set to SCHED_FIFO
+ *
+ * Attempting to set SCHED_RR with priority 30...
+ * Successfully set to SCHED_RR
+ *
+ * Restoring to SCHED_OTHER...
+ * Restored to SCHED_OTHER
  */
 

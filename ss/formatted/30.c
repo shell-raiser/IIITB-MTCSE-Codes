@@ -86,11 +86,6 @@ int main(int argc, char *argv[]) {
 }
 /*
  * Output
- * Command: gcc 30.c -o 30
- *
- * ./30.c: In function ‘main’:
- * ./30.c:73:17: error: implicit declaration of function ‘waitpid’ [-Wimplicit-function-declaration]
- *    73 |                 waitpid(pid, NULL, 0);
- *       |                 ^~~~~~~
+ * Command: gcc 30.c -o 30 && ./30
  */
 

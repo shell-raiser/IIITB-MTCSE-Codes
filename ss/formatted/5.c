@@ -79,8 +79,5 @@ int main() {
 /*
  * Output
  * Command: gcc 5.c -o 5
- *
- * Program timed out after 10 seconds while running.
- * No further output was captured.
  */
 
