@@ -49,20 +49,6 @@ void write_lock_record(int fd, int rec_num) {
     printf("Write lock acquired on record %d\n", rec_num + 1);
 }
 
-void read_lock_record(int fd, int rec_num) {
-    struct flock lock;
-    lock.l_type = F_RDLCK;
-    lock.l_whence = SEEK_SET;
-    lock.l_start = rec_num * RECORD_SIZE;
-    lock.l_len = RECORD_SIZE;
-    
-    if (fcntl(fd, F_SETLKW, &lock) == -1) {
-        perror("read lock failed");
-        exit(1);
-    }
-    printf("Read lock acquired on record %d\n", rec_num + 1);
-}
-
 void unlock_record(int fd, int rec_num) {
     struct flock lock;
     lock.l_type = F_UNLCK;
@@ -94,23 +80,11 @@ void write_record(int fd, int rec_num, const char *data) {
     unlock_record(fd, rec_num);
 }
 
-void read_record(int fd, int rec_num) {
-    read_lock_record(fd, rec_num);
-    
-    struct record rec;
-    lseek(fd, rec_num * RECORD_SIZE, SEEK_SET);
-    read(fd, &rec, sizeof(rec));
-    
-    printf("Record %d: ID=%d, Data='%s'\n", rec_num + 1, rec.id, rec.data);
-    unlock_record(fd, rec_num);
-}
-
 int main(int argc, char *argv[]) {
     if (argc < 2) {
-        printf("Usage: %s <init|write|read> [record_num] [data]\n", argv[0]);
+        printf("Usage: %s <init|write> [record_num] [data]\n", argv[0]);
         printf("  init                    - Initialize records file\n");
         printf("  write <rec_num> <data>  - Write lock and update record\n");
-        printf("  read <rec_num>          - Read lock and read record\n");
         exit(1);
     }
     
@@ -138,19 +112,6 @@ int main(int argc, char *argv[]) {
             exit(1);
         }
         write_record(fd, rec_num, argv[3]);
-    } else if (strcmp(argv[1], "read") == 0) {
-        if (argc < 3) {
-            printf("Usage: %s read <rec_num>\n", argv[0]);
-            close(fd);
-            exit(1);
-        }
-        int rec_num = atoi(argv[2]) - 1;
-        if (rec_num < 0 || rec_num >= NUM_RECORDS) {
-            printf("Record number must be 1-%d\n", NUM_RECORDS);
-            close(fd);
-            exit(1);
-        }
-        read_record(fd, rec_num);
     } else {
         printf("Invalid command\n");
     }
