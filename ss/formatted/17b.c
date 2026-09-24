@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/file.h>  // for flock
+#include <errno.h>
 
 int main() {
     int fd = open("ticket.dat", O_RDWR);
@@ -18,13 +19,22 @@ int main() {
     
     // Acquire write lock (exclusive lock)
     struct flock lock;
-    lock.l_type = F_WRLCK;
     lock.l_whence = SEEK_SET;
     lock.l_start = 0;
     lock.l_len = 0;  // Lock entire file
     
     printf("Waiting for write lock...\n");
-    if (fcntl(fd, F_SETLKW, &lock) == -1) {
+    while (1) {
+        lock.l_type = F_WRLCK;
+        if (fcntl(fd, F_SETLK, &lock) == 0) {
+            break;
+        }
+
+        if (errno == EACCES || errno == EAGAIN) {
+            sleep(1);      // retry until the file is available
+            continue;
+        }
+
         perror("fcntl write lock failed");
         close(fd);
         exit(1);
@@ -70,6 +80,5 @@ int main() {
  * Output
  * Command: gcc 17b.c -o 17b
  *
- * open failed (run init program first): No such file or directory
  */
 

@@ -2,7 +2,7 @@
 17. Online Ticket Reservation Simulation: Develop a program to simulate online ticket reservation with the implementation of a write lock. Write one program to open a file, store a ticket number, and exit. Write a separate program to open the file, implement a write lock, read the ticket number, increment the number, print the new ticket number, and then close the file.
 */
 
-// Program 2: Reserve ticket with write lock (ticket_reserve.c)
+// Program 1: Initialize ticket file (ticket_init.c)
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -10,59 +10,38 @@
 #include <sys/file.h>  // for flock
 
 int main() {
-    int fd = open("ticket.dat", O_RDWR);
+    int fd = open("ticket.dat", O_RDWR | O_CREAT, 0644);
     if (fd < 0) {
-        perror("open failed (run init program first)");
+        perror("open failed");
         exit(1);
     }
-    
-    // Acquire write lock (exclusive lock)
+
+    // lock and initialize ticket number
     struct flock lock;
     lock.l_type = F_WRLCK;
     lock.l_whence = SEEK_SET;
     lock.l_start = 0;
     lock.l_len = 0;  // Lock entire file
-    
-    printf("Waiting for write lock...\n");
+
     if (fcntl(fd, F_SETLKW, &lock) == -1) {
         perror("fcntl write lock failed");
         close(fd);
         exit(1);
     }
-    
-    printf("Write lock acquired\n");
-    
-    // Read current ticket number
-    int ticket;
-    lseek(fd, 0, SEEK_SET);
-    if (read(fd, &ticket, sizeof(int)) != sizeof(int)) {
-        perror("read failed");
+
+    int ticket = 1000;
+    if (write(fd, &ticket, sizeof(int)) != sizeof(int)) {
+        perror("write failed");
         lock.l_type = F_UNLCK;
         fcntl(fd, F_SETLK, &lock);
         close(fd);
         exit(1);
     }
-    
-    printf("Current ticket number: %d\n", ticket);
-    
-    // Increment ticket number
-    ticket++;
-    printf("New ticket number: %d\n", ticket);
-    
-    // Write back
-    lseek(fd, 0, SEEK_SET);
-    if (write(fd, &ticket, sizeof(int)) != sizeof(int)) {
-        perror("write failed");
-    }
-    
-    // Release lock
+
+    printf("Ticket file initialized with ticket number: %d\n", ticket);
+    sleep(10);  
     lock.l_type = F_UNLCK;
-    if (fcntl(fd, F_SETLK, &lock) == -1) {
-        perror("fcntl unlock failed");
-    } else {
-        printf("Write lock released\n");
-    }
-    
+    fcntl(fd, F_SETLK, &lock);
     close(fd);
     return 0;
 }
@@ -70,6 +49,5 @@ int main() {
  * Output
  * Command: gcc 17a.c -o 17a
  *
- * open failed (run init program first): No such file or directory
+ * Ticket file initialized with ticket number: 1000
  */
-
