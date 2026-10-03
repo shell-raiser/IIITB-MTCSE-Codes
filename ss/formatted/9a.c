@@ -11,16 +11,16 @@
 // i. Time of last modification
 // j. Time of last change
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <time.h>
-#include <string.h>
-#include <pwd.h>
-#include <grp.h>
+#include <stdio.h>   // printf(), fprintf(), perror()
+#include <stdlib.h>  // EXIT_SUCCESS, EXIT_FAILURE, exit()
+#include <unistd.h>  // stat(), getpwuid(), getgrgid() (POSIX functions)
+#include <sys/types.h>  // primitive system data types (uid_t, gid_t, off_t)
+#include <sys/stat.h>   // struct stat, stat(), S_IFMT, S_IFREG, etc.
+#include <fcntl.h>     // open() constants and file control options
+#include <time.h>      // time_t, localtime(), strftime()
+#include <string.h>    // strlen(), strcmp(), etc. (not heavily used here)
+#include <pwd.h>       // passwd, getpwuid()
+#include <grp.h>       // group, getgrgid()
 
 void print_time(const char *label, time_t t) {
     char buf[64];
