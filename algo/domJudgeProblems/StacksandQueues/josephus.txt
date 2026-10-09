@@ -1,0 +1,40 @@
+Circular Game (Josephus Problem)
+================================
+
+There are n people standing in a circle, numbered 0 to n-1. Starting from
+person 0, every k-th person is eliminated (counting the current person as 1).
+After each elimination, counting resumes from the next person. This continues
+until only one person remains.
+
+Return the position (0-indexed) of the survivor.
+
+Input:
+  A single line containing two integers n and k, separated by a space.
+
+Output:
+  A single integer — the 0-indexed position of the survivor.
+
+Constraints:
+  1 <= n <= 10^7
+  1 <= k <= 10^7
+
+Note:
+  The constraints are intentionally large. A naive O(n*k) queue simulation
+  will Time Limit Exceeded. Use the mathematical recurrence instead.
+
+Examples:
+
+  Input:  5 2
+  Output: 2
+
+  Input:  6 5
+  Output: 0
+
+  Input:  1 1
+  Output: 0
+
+  Input:  7 3
+  Output: 3
+
+  Input:  41 3
+  Output: 30

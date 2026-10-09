@@ -1,0 +1,2 @@
+Written by original fd
+Written by dup2 fd

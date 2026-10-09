@@ -1,0 +1,57 @@
+Minimum Number of K Consecutive Bit Flips
+https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/
+=========================================
+
+You are given a binary array nums and an integer k.
+
+A k-bit flip chooses a contiguous subarray of length k and flips every bit
+in it — every 0 becomes 1 and every 1 becomes 0.
+
+Return the minimum number of k-bit flips required so that there are no 0s in the array. If it is impossible, return -1.
+
+Input:
+  Line 1: two integers n and k
+  Line 2: n space-separated binary integers (0 or 1)
+
+Output:
+  A single integer — minimum number of flips, or -1 if impossible.
+
+Constraints:
+  1 <= n <= 10^5
+  1 <= k <= n
+  nums[i] is 0 or 1
+
+Example 1:
+  Input:
+    5 3
+    0 0 0 1 1
+  Output:
+    1
+
+Example 2:
+  Input:
+    3 1
+    0 1 0
+  Output:
+    2
+
+Example 3:
+  Input:
+    4 2
+    0 1 0 1
+  Output:
+    2
+
+Example 4:
+  Input:
+    5 3
+    0 0 1 0 0
+  Output:
+    2
+
+Example 5:
+  Input:
+    4 3
+    0 0 0 0
+  Output:
+    -1
