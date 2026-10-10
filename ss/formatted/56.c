@@ -71,17 +71,15 @@ int main() {
 /*
  * Output
  * Command: gcc 56.c -o 56
- *
- * ./56.c: In function ‘main’:
- * ./56.c:57:16: error: storage size of ‘start_tms’ isn’t known
- *    57 |     struct tms start_tms, end_tms;
- *       |                ^~~~~~~~~
- * ./56.c:57:27: error: storage size of ‘end_tms’ isn’t known
- *    57 |     struct tms start_tms, end_tms;
- *       |                           ^~~~~~~
- * ./56.c:58:5: error: implicit declaration of function ‘times’; did you mean ‘time’? [-Wimplicit-function-declaration]
- *    58 |     times(&start_tms);
- *       |     ^~~~~
- *       |     time
+
+ Measuring time for 100 getppid() system calls
+==============================================
+TSC cycles: 16540
+TSC per call: 165.40
+gettimeofday: 7 microseconds total, 0.07 per call
+clock_gettime: 7605 nanoseconds total, 76.05 per call
+times(): 0 ticks total, 0.00 per call (clk_tck=100)
+
+ 
  */
 

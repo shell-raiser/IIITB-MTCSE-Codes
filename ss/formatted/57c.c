@@ -103,15 +103,27 @@ int main() {
  * Output
  * Command: gcc 57c.c -o 57c
  *
- * ./57c.c: In function ‘main’:
- * ./57c.c:95:41: error: ‘_SC_PATH_MAX’ undeclared (first use in this function); did you mean ‘_PC_PATH_MAX’?
- *    95 |     printf("  PATH_MAX: %ld\n", sysconf(_SC_PATH_MAX));
- *       |                                         ^~~~~~~~~~~~
- *       |                                         _PC_PATH_MAX
- * ./57c.c:95:41: note: each undeclared identifier is reported only once for each function it appears in
- * ./57c.c:96:41: error: ‘_SC_PIPE_BUF’ undeclared (first use in this function); did you mean ‘_PC_PIPE_BUF’?
- *    96 |     printf("  PIPE_BUF: %ld\n", sysconf(_SC_PIPE_BUF));
- *       |                                         ^~~~~~~~~~~~
- *       |                                         _PC_PIPE_BUF
+ System Limitations:
+==================
+a. ARG_MAX (max exec arguments): 2097152 bytes
+b. CHILD_MAX (max processes per user): 29091
+   RLIMIT_NPROC soft: 29091, hard: 29091
+c. CLK_TCK (clock ticks per second): 100
+d. OPEN_MAX (max open files): 1048576
+   RLIMIT_NOFILE soft: 1048576, hard: 1048576
+e. PAGE_SIZE: 4096 bytes (4 KB)
+f. PHYS_PAGES (total physical pages): 1880817
+   Total physical memory: 7346.94 MB
+g. AVPHYS_PAGES (available physical pages): 194097
+   Available memory: 758.19 MB
+
+Additional limits:
+  LOGIN_NAME_MAX: 256
+  HOST_NAME_MAX: 64
+  PATH_MAX: 4096
+  PIPE_BUF: 4096
+  STREAM_MAX: 16
+  TZNAME_MAX: -1
+
  */
 
