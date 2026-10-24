@@ -35,7 +35,7 @@ public class Catalogue {
             throw new IllegalArgumentException("Number of copies must be at least 1");
         }
         if (books.containsKey(book.getIsbn())) {
-            throw new DuplicateBookException("A book with this ISBN already exists");
+            throw new DuplicateBookException(book.getIsbn());
         }
         books.put(book.getIsbn(), book);
         totalCopies.put(book.getIsbn(), copies);
@@ -48,7 +48,7 @@ public class Catalogue {
     public Book findByIsbn(String isbn) {
         // throw new UnsupportedOperationException("TODO: implement findByIsbn");
         if (!books.containsKey(isbn)) {
-            throw new BookNotFoundException("No book with this ISBN found");
+            throw new BookNotFoundException(isbn);
         }
         return books.get(isbn);
     }
@@ -78,11 +78,11 @@ public class Catalogue {
     public void lendCopy(String isbn) {
         // throw new UnsupportedOperationException("TODO: implement lendCopy");
         if (!books.containsKey(isbn)) {
-            throw new BookNotFoundException("No book with this ISBN found");
+            throw new BookNotFoundException(isbn);
         }
         int available = availableCopies.get(isbn);
         if (available <= 0) {
-            throw new NoCopiesAvailableException("No copies available for this book");
+            throw new NoCopiesAvailableException(isbn);
         }
         availableCopies.put(isbn, available - 1);
         return;
@@ -97,7 +97,7 @@ public class Catalogue {
     public void returnCopy(String isbn) {
         // throw new UnsupportedOperationException("TODO: implement returnCopy");
         if (!books.containsKey(isbn)) {
-            throw new BookNotFoundException("No book with this ISBN found");
+            throw new BookNotFoundException(isbn);
         }
         int available = availableCopies.get(isbn);
         int total = totalCopies.get(isbn);
@@ -114,7 +114,7 @@ public class Catalogue {
     public int availableCopies(String isbn) {
         // throw new UnsupportedOperationException("TODO: implement availableCopies");
         if (!books.containsKey(isbn)) {
-            throw new BookNotFoundException("No book with this ISBN found");
+            throw new BookNotFoundException(isbn);
         }
         return availableCopies.get(isbn);
     }
