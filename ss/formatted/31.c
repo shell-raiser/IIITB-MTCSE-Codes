@@ -43,10 +43,7 @@ int main() {
 /*
  * Output
  * Command: gcc 31.c -o 31
- *
- * ./31.c: In function ‘main’:
- * ./31.c:37:9: error: implicit declaration of function ‘wait’ [-Wimplicit-function-declaration]
- *    37 |         wait(NULL);
- *       |         ^~~~
+Parent sent: Hello through pipe!
+Child received: Hello through pipe!
  */
 
