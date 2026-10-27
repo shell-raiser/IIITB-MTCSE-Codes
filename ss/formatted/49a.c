@@ -21,148 +21,107 @@ union semun {
     unsigned short *array;
 };
 
-int semid;
-int shmid;
-int *ticket_ptr;
+#define ITER 5
 
-// Semaphore operations
-void sem_wait(int semid, int semnum) {
-    struct sembuf op = {semnum, -1, 0};
-    semop(semid, &op, 1);
+static int sem_wait_op(int semid, int semnum) {
+    struct sembuf op = {(unsigned short)semnum, -1, 0};
+    while (semop(semid, &op, 1) == -1) {
+        if (errno != EINTR) return -1;
+    }
+    return 0;
 }
 
-void sem_signal(int semid, int semnum) {
-    struct sembuf op = {semnum, 1, 0};
-    semop(semid, &op, 1);
+static int sem_signal_op(int semid, int semnum) {
+    struct sembuf op = {(unsigned short)semnum, 1, 0};
+    while (semop(semid, &op, 1) == -1) {
+        if (errno != EINTR) return -1;
+    }
+    return 0;
 }
 
-// a. Ticket number creation using semaphore
-void ticket_program() {
-    printf("=== a. Ticket Number with Semaphore ===\n");
-    
-    key_t key = ftok(".", 'T');
-    semid = semget(key, 1, IPC_CREAT | 0666);
+int main(void) {
+    /* --- semaphore --- */
+    key_t sem_key = ftok(".", 'T');
+    if (sem_key == -1) { perror("ftok(sem)"); return 1; }
+
+    int semid = semget(sem_key, 1, IPC_CREAT | IPC_EXCL | 0666);
+    if (semid == -1 && errno == EEXIST) {
+        /* stale semaphore from an earlier aborted run: drop and recreate */
+        semid = semget(sem_key, 1, 0);
+        if (semid != -1) semctl(semid, 0, IPC_RMID);
+        semid = semget(sem_key, 1, IPC_CREAT | 0666);
+    }
+    if (semid == -1) { perror("semget"); return 1; }
+
     union semun arg;
-    arg.val = 1;
-    semctl(semid, 0, SETVAL, arg);
-    
-    shmid = shmget(ftok(".", 'S'), sizeof(int), IPC_CREAT | 0666);
-    ticket_ptr = (int *)shmat(shmid, NULL, 0);
-    *ticket_ptr = 100;
-    
+    arg.val = 1;                       /* binary semaphore */
+    if (semctl(semid, 0, SETVAL, arg) == -1) {
+        perror("semctl SETVAL");
+        return 1;
+    }
+
+    /* --- shared ticket counter --- */
+    key_t shm_key = ftok(".", 'S');
+    if (shm_key == -1) { perror("ftok(shm)"); return 1; }
+
+    int shmid = shmget(shm_key, sizeof(int), IPC_CREAT | IPC_EXCL | 0666);
+    if (shmid == -1 && errno == EEXIST) {
+        shmid = shmget(shm_key, sizeof(int), 0);
+        if (shmid != -1) shmctl(shmid, IPC_RMID, NULL);
+        shmid = shmget(shm_key, sizeof(int), IPC_CREAT | 0666);
+    }
+    if (shmid == -1) { perror("shmget"); return 1; }
+
+    int *ticket = (int *)shmat(shmid, NULL, 0);
+    if (ticket == (void *)-1) { perror("shmat"); return 1; }
+    *ticket = 100;
+
+    printf("=== a. Ticket Number Creation using a Semaphore ===\n");
+    fflush(stdout);
+
     pid_t pid = fork();
+    if (pid == -1) { perror("fork"); return 1; }
+
+    const char *who = (pid == 0) ? "Child " : "Parent";
+    for (int i = 0; i < ITER; i++) {
+        if (sem_wait_op(semid, 0) == -1) { perror("semop wait"); break; }
+
+        int t = *ticket;               /* critical section */
+        printf("%s: Ticket %d\n", who, t);
+        *ticket = t + 1;
+        fflush(stdout);
+
+        if (sem_signal_op(semid, 0) == -1) { perror("semop signal"); break; }
+        usleep(100000);
+    }
+
+    shmdt(ticket);
+
     if (pid == 0) {
-        // Child
-        for (int i = 0; i < 5; i++) {
-            sem_wait(semid, 0);
-            int t = *ticket_ptr;
-            printf("Child: Ticket %d\n", t);
-            (*ticket_ptr)++;
-            sem_signal(semid, 0);
-            sleep(1);
-        }
-        shmdt(ticket_ptr);
-        exit(0);
+        _exit(0);                      /* child must not remove IPC */
     }
-    
-    // Parent
-    for (int i = 0; i < 5; i++) {
-        sem_wait(semid, 0);
-        int t = *ticket_ptr;
-        printf("Parent: Ticket %d\n", t);
-        (*ticket_ptr)++;
-        sem_signal(semid, 0);
-        sleep(1);
-    }
-    
-    wait(NULL);
-    shmdt(ticket_ptr);
-    semctl(semid, 0, IPC_RMID);
-    shmctl(shmid, IPC_RMID, NULL);
-}
 
-// b. Protect shared memory from concurrent write access
-void protect_shared_memory() {
-    printf("\n=== b. Protect Shared Memory ===\n");
-    
-    key_t key = ftok(".", 'M');
-    semid = semget(key, 1, IPC_CREAT | 0666);
-    union semun arg;
-    arg.val = 1;
-    semctl(semid, 0, SETVAL, arg);
-    
-    shmid = shmget(ftok(".", 'D'), 256, IPC_CREAT | 0666);
-    char *shm = (char *)shmat(shmid, NULL, 0);
-    
-    pid_t pid = fork();
-    if (pid == 0) {
-        for (int i = 0; i < 3; i++) {
-            sem_wait(semid, 0);
-            sprintf(shm, "Child write %d", i);
-            printf("Child wrote: %s\n", shm);
-            sem_signal(semid, 0);
-            sleep(1);
-        }
-        shmdt(shm);
-        exit(0);
-    }
-    
-    for (int i = 0; i < 3; i++) {
-        sem_wait(semid, 0);
-        sprintf(shm, "Parent write %d", i);
-        printf("Parent wrote: %s\n", shm);
-        sem_signal(semid, 0);
-        sleep(1);
-    }
-    
-    wait(NULL);
-    shmdt(shm);
-    semctl(semid, 0, IPC_RMID);
-    shmctl(shmid, IPC_RMID, NULL);
-}
+    waitpid(pid, NULL, 0);
 
-// c. Protect multiple pseudo resources using counting semaphore
-void counting_semaphore_demo() {
-    printf("\n=== c. Counting Semaphore (2 resources) ===\n");
-    
-    key_t key = ftok(".", 'R');
-    semid = semget(key, 1, IPC_CREAT | 0666);
-    union semun arg;
-    arg.val = 2; // 2 resources
-    semctl(semid, 0, SETVAL, arg);
-    
-    for (int i = 0; i < 4; i++) {
-        pid_t pid = fork();
-        if (pid == 0) {
-            printf("Process %d: Waiting for resource...\n", i);
-            sem_wait(semid, 0);
-            printf("Process %d: Got resource!\n", i);
-            sleep(2);
-            printf("Process %d: Releasing resource\n", i);
-            sem_signal(semid, 0);
-            exit(0);
-        }
-    }
-    
-    for (int i = 0; i < 4; i++) wait(NULL);
-    
-    // d. Remove the created semaphore
-    printf("\n=== d. Removing semaphore ===\n");
-    semctl(semid, 0, IPC_RMID);
-    printf("Semaphore removed\n");
-}
-
-int main() {
-    ticket_program();
-    protect_shared_memory();
-    counting_semaphore_demo();
+    if (semctl(semid, 0, IPC_RMID) == -1) perror("semctl IPC_RMID");
+    if (shmctl(shmid, IPC_RMID, NULL) == -1) perror("shmctl IPC_RMID");
     return 0;
 }
 /*
  * Output
- * Command: gcc 49a.c -o 49a
+ * Command: gcc 49a.c -o 49a && ./49a
  *
- * Program timed out after 10 seconds while running.
- * No further output was captured.
+ * === a. Ticket Number Creation using a Semaphore ===
+ * Parent: Ticket 100
+ * Child : Ticket 101
+ * Parent: Ticket 102
+ * Child : Ticket 103
+ * Child : Ticket 104
+ * Parent: Ticket 105
+ * Child : Ticket 106
+ * Parent: Ticket 107
+ * Child : Ticket 108
+ * Parent: Ticket 109
+ *
+ * Tickets 100..109 are handed out exactly once each, in order, with no duplicates.
  */
-

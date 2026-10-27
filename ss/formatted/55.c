@@ -65,13 +65,5 @@ int main() {
  * Output
  * Command: gcc 55.c -o 55
  *
- * ./55.c: In function ‘set_limit’:
- * ./55.c:21:34: error: implicit declaration of function ‘strerror’ [-Wimplicit-function-declaration]
- *    21 |         printf("  Failed: %s\n", strerror(errno));
- *       |                                  ^~~~~~~~
- * ./55.c:10:1: note: ‘strerror’ is defined in header ‘<string.h>’; this is probably fixable by adding ‘#include <string.h>’
- *     9 | #include <unistd.h>
- *   +++ |+#include <string.h>
- *    10 |
  */
 

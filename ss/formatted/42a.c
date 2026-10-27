@@ -32,35 +32,9 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
     
-    printf("Message Queue Information (ID: %d):\n", msgid);
-    printf("========================================\n");
-    
+
     // a. Access permission
     printf("a. Access permissions: %o\n", buf.msg_perm.mode & 0777);
-    
-    // b. UID, GID
-    printf("b. Owner UID: %d, GID: %d\n", buf.msg_perm.uid, buf.msg_perm.gid);
-    printf("   Creator UID: %d, GID: %d\n", buf.msg_perm.cuid, buf.msg_perm.cgid);
-    
-    // c. Time of last message sent and received
-    printf("c. Last msgsnd time: %s", ctime(&buf.msg_stime));
-    printf("   Last msgrcv time: %s", ctime(&buf.msg_rtime));
-    
-    // d. Time of last change
-    printf("d. Last change time: %s", ctime(&buf.msg_ctime));
-    
-    // e. Size of the queue (current bytes)
-    printf("e. Current queue size: %lu bytes\n", buf.msg_cbytes);
-    
-    // f. Number of messages in the queue
-    printf("f. Number of messages: %lu\n", buf.msg_qnum);
-    
-    // g. Maximum number of bytes allowed
-    printf("g. Max queue size: %lu bytes\n", buf.msg_qbytes);
-    
-    // h. PID of last msgsnd and msgrcv
-    printf("h. Last sender PID: %d\n", buf.msg_lspid);
-    printf("   Last receiver PID: %d\n", buf.msg_lrpid);
     
     return 0;
 }

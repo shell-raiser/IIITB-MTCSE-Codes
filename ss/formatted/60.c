@@ -31,7 +31,12 @@ int main() {
  * Output
  * Command: gcc 60a.c -o 60a
  *
- * Program timed out after 10 seconds while running.
- * No further output was captured.
+PID: 126222
+Setting SIGINT to SIG_IGN (ignore)...
+Try pressing Ctrl+C now (should be ignored)
+^C
+Resetting SIGINT to SIG_DFL (default)...
+Now press Ctrl+C (should terminate program) 
+^C
  */
 

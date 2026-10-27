@@ -62,7 +62,7 @@ int main() {
  * Output
  * Command: gcc 39.c -o 39
  *
- * Program timed out after 10 seconds while running.
- * No further output was captured.
+ * Waiting for data on FIFO (10 second timeout)...
+ * Timeout: No data received within 10 seconds
  */
 

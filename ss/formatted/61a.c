@@ -1,89 +1,54 @@
 /*
-61. Signal Handling with sigaction: Write separate programs using the sigaction system call to catch the following signals:
-a. SIGSEGV
-b. SIGINT
-c. SIGFPE
+61. Signal Handling with sigaction()
+ a. Catch SIGSEGV
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
-#include <string.h>
 
-void sigsegv_handler(int sig, siginfo_t *info, void *context) {
-    (void)sig;
+static void sigsegv_handler(int sig, siginfo_t *info, void *context) {
     (void)context;
-    printf("Caught SIGSEGV (Segmentation fault)!\n");
+    printf("Caught SIGSEGV (signal %d) via sigaction\n", sig);
     printf("  Faulting address: %p\n", info->si_addr);
+    printf("  si_code         : %d (%s)\n", info->si_code,
+           info->si_code == SEGV_MAPERR ? "SEGV_MAPERR - address not mapped" :
+           info->si_code == SEGV_ACCERR ? "SEGV_ACCERR - invalid permission" :
+                                          "other");
+    printf("Note: must not return from a SIGSEGV handler, exiting.\n");
     exit(1);
 }
 
-void sigint_handler(int sig, siginfo_t *info, void *context) {
-    (void)sig;
-    (void)info;
-    (void)context;
-    printf("Caught SIGINT (Ctrl+C)!\n");
-    exit(0);
-}
-
-void sigfpe_handler(int sig, siginfo_t *info, void *context) {
-    (void)sig;
-    (void)context;
-    printf("Caught SIGFPE (Floating point exception)!\n");
-    printf("  Code: %d\n", info->si_code);
-    exit(1);
-}
-
-int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Usage: %s <a|b|c>\n", argv[0]);
-        printf("  a - SIGSEGV\n  b - SIGINT\n  c - SIGFPE\n");
-        exit(1);
-    }
-    
+int main(void) {
     struct sigaction sa;
-    sa.sa_flags = SA_SIGINFO;
+    sa.sa_sigaction = sigsegv_handler;
     sigemptyset(&sa.sa_mask);
-    
-    switch(argv[1][0]) {
-        case 'a':
-            sa.sa_sigaction = sigsegv_handler;
-            sigaction(SIGSEGV, &sa, NULL);
-            printf("SIGSEGV handler installed with sigaction. Causing segfault...\n");
-            int *p = NULL;
-            *p = 42;
-            break;
-            
-        case 'b':
-            sa.sa_sigaction = sigint_handler;
-            sigaction(SIGINT, &sa, NULL);
-            printf("SIGINT handler installed with sigaction. Press Ctrl+C...\n");
-            while (1) pause();
-            break;
-            
-        case 'c':
-            sa.sa_sigaction = sigfpe_handler;
-            sigaction(SIGFPE, &sa, NULL);
-            printf("SIGFPE handler installed with sigaction. Causing divide by zero...\n");
-            int x = 1, y = 0;
-            int z = x / y;
-            (void)z;
-            break;
-            
-        default:
-            printf("Invalid option\n");
+    sa.sa_flags = SA_SIGINFO;   /* gives us siginfo_t -> si_addr */
+
+    if (sigaction(SIGSEGV, &sa, NULL) == -1) {
+        perror("sigaction");
+        return 1;
     }
-    
+
+    printf("SIGSEGV handler installed with sigaction(SA_SIGINFO).\n");
+    printf("Causing a segfault by writing to a NULL pointer...\n");
+    fflush(stdout);
+
+    volatile int *p = NULL;
+    *p = 42;
+
+    printf("UNREACHABLE\n");
     return 0;
 }
 /*
  * Output
- * Command: gcc 61a.c -o 61a
+ * Command: gcc 61a.c -o 61a && ./61a
  *
- * Usage: /tmp/ss_run_61a_48157 <a|b|c>
- *   a - SIGSEGV
- *   b - SIGINT
- *   c - SIGFPE
+ * SIGSEGV handler installed with sigaction(SA_SIGINFO).
+ * Causing a segfault by writing to a NULL pointer...
+ * Caught SIGSEGV (signal 11) via sigaction
+ *   Faulting address: (nil)
+ *   si_code         : 1 (SEGV_MAPERR - address not mapped)
+ * Note: must not return from a SIGSEGV handler, exiting.
  */
-

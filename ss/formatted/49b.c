@@ -8,6 +8,7 @@ d. Remove the created semaphore
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
@@ -21,148 +22,96 @@ union semun {
     unsigned short *array;
 };
 
-int semid;
-int shmid;
-int *ticket_ptr;
+#define SHM_SIZE 256
+#define ITER     3
 
-// Semaphore operations
-void sem_wait(int semid, int semnum) {
-    struct sembuf op = {semnum, -1, 0};
-    semop(semid, &op, 1);
+static int sem_wait_op(int semid, int semnum) {
+    struct sembuf op = {(unsigned short)semnum, -1, 0};
+    while (semop(semid, &op, 1) == -1) {
+        if (errno != EINTR) return -1;
+    }
+    return 0;
 }
 
-void sem_signal(int semid, int semnum) {
-    struct sembuf op = {semnum, 1, 0};
-    semop(semid, &op, 1);
+static int sem_signal_op(int semid, int semnum) {
+    struct sembuf op = {(unsigned short)semnum, 1, 0};
+    while (semop(semid, &op, 1) == -1) {
+        if (errno != EINTR) return -1;
+    }
+    return 0;
 }
 
-// a. Ticket number creation using semaphore
-void ticket_program() {
-    printf("=== a. Ticket Number with Semaphore ===\n");
-    
-    key_t key = ftok(".", 'T');
-    semid = semget(key, 1, IPC_CREAT | 0666);
+int main(void) {
+    key_t sem_key = ftok(".", 'M');
+    if (sem_key == -1) { perror("ftok(sem)"); return 1; }
+
+    int semid = semget(sem_key, 1, IPC_CREAT | IPC_EXCL | 0666);
+    if (semid == -1 && errno == EEXIST) {
+        semid = semget(sem_key, 1, 0);
+        if (semid != -1) semctl(semid, 0, IPC_RMID);
+        semid = semget(sem_key, 1, IPC_CREAT | 0666);
+    }
+    if (semid == -1) { perror("semget"); return 1; }
+
     union semun arg;
     arg.val = 1;
-    semctl(semid, 0, SETVAL, arg);
-    
-    shmid = shmget(ftok(".", 'S'), sizeof(int), IPC_CREAT | 0666);
-    ticket_ptr = (int *)shmat(shmid, NULL, 0);
-    *ticket_ptr = 100;
-    
-    pid_t pid = fork();
-    if (pid == 0) {
-        // Child
-        for (int i = 0; i < 5; i++) {
-            sem_wait(semid, 0);
-            int t = *ticket_ptr;
-            printf("Child: Ticket %d\n", t);
-            (*ticket_ptr)++;
-            sem_signal(semid, 0);
-            sleep(1);
-        }
-        shmdt(ticket_ptr);
-        exit(0);
-    }
-    
-    // Parent
-    for (int i = 0; i < 5; i++) {
-        sem_wait(semid, 0);
-        int t = *ticket_ptr;
-        printf("Parent: Ticket %d\n", t);
-        (*ticket_ptr)++;
-        sem_signal(semid, 0);
-        sleep(1);
-    }
-    
-    wait(NULL);
-    shmdt(ticket_ptr);
-    semctl(semid, 0, IPC_RMID);
-    shmctl(shmid, IPC_RMID, NULL);
-}
+    if (semctl(semid, 0, SETVAL, arg) == -1) { perror("semctl SETVAL"); return 1; }
 
-// b. Protect shared memory from concurrent write access
-void protect_shared_memory() {
-    printf("\n=== b. Protect Shared Memory ===\n");
-    
-    key_t key = ftok(".", 'M');
-    semid = semget(key, 1, IPC_CREAT | 0666);
-    union semun arg;
-    arg.val = 1;
-    semctl(semid, 0, SETVAL, arg);
-    
-    shmid = shmget(ftok(".", 'D'), 256, IPC_CREAT | 0666);
+    key_t shm_key = ftok(".", 'D');
+    if (shm_key == -1) { perror("ftok(shm)"); return 1; }
+
+    int shmid = shmget(shm_key, SHM_SIZE, IPC_CREAT | IPC_EXCL | 0666);
+    if (shmid == -1 && errno == EEXIST) {
+        shmid = shmget(shm_key, SHM_SIZE, 0);
+        if (shmid != -1) shmctl(shmid, IPC_RMID, NULL);
+        shmid = shmget(shm_key, SHM_SIZE, IPC_CREAT | 0666);
+    }
+    if (shmid == -1) { perror("shmget"); return 1; }
+
     char *shm = (char *)shmat(shmid, NULL, 0);
-    
+    if (shm == (void *)-1) { perror("shmat"); return 1; }
+    shm[0] = '\0';
+
+    printf("=== b. Protecting Shared Memory from Concurrent Writes ===\n");
+    fflush(stdout);
+
     pid_t pid = fork();
-    if (pid == 0) {
-        for (int i = 0; i < 3; i++) {
-            sem_wait(semid, 0);
-            sprintf(shm, "Child write %d", i);
-            printf("Child wrote: %s\n", shm);
-            sem_signal(semid, 0);
-            sleep(1);
-        }
-        shmdt(shm);
-        exit(0);
+    if (pid == -1) { perror("fork"); return 1; }
+
+    const char *who = (pid == 0) ? "Child " : "Parent";
+    for (int i = 0; i < ITER; i++) {
+        if (sem_wait_op(semid, 0) == -1) { perror("semop wait"); break; }
+
+        /* critical section: full read-modify-write of the shared segment */
+        snprintf(shm, SHM_SIZE, "%s write %d", who, i);
+        printf("%s wrote: %s\n", who, shm);
+        fflush(stdout);
+
+        if (sem_signal_op(semid, 0) == -1) { perror("semop signal"); break; }
+        usleep(100000);
     }
-    
-    for (int i = 0; i < 3; i++) {
-        sem_wait(semid, 0);
-        sprintf(shm, "Parent write %d", i);
-        printf("Parent wrote: %s\n", shm);
-        sem_signal(semid, 0);
-        sleep(1);
-    }
-    
-    wait(NULL);
+
     shmdt(shm);
-    semctl(semid, 0, IPC_RMID);
-    shmctl(shmid, IPC_RMID, NULL);
-}
 
-// c. Protect multiple pseudo resources using counting semaphore
-void counting_semaphore_demo() {
-    printf("\n=== c. Counting Semaphore (2 resources) ===\n");
-    
-    key_t key = ftok(".", 'R');
-    semid = semget(key, 1, IPC_CREAT | 0666);
-    union semun arg;
-    arg.val = 2; // 2 resources
-    semctl(semid, 0, SETVAL, arg);
-    
-    for (int i = 0; i < 4; i++) {
-        pid_t pid = fork();
-        if (pid == 0) {
-            printf("Process %d: Waiting for resource...\n", i);
-            sem_wait(semid, 0);
-            printf("Process %d: Got resource!\n", i);
-            sleep(2);
-            printf("Process %d: Releasing resource\n", i);
-            sem_signal(semid, 0);
-            exit(0);
-        }
-    }
-    
-    for (int i = 0; i < 4; i++) wait(NULL);
-    
-    // d. Remove the created semaphore
-    printf("\n=== d. Removing semaphore ===\n");
-    semctl(semid, 0, IPC_RMID);
-    printf("Semaphore removed\n");
-}
+    if (pid == 0) _exit(0);
 
-int main() {
-    ticket_program();
-    protect_shared_memory();
-    counting_semaphore_demo();
+    waitpid(pid, NULL, 0);
+
+    if (semctl(semid, 0, IPC_RMID) == -1) perror("semctl IPC_RMID");
+    if (shmctl(shmid, IPC_RMID, NULL) == -1) perror("shmctl IPC_RMID");
     return 0;
 }
 /*
  * Output
- * Command: gcc 49b.c -o 49b
+ * Command: gcc 49b.c -o 49b && ./49b
  *
- * Program timed out after 10 seconds while running.
- * No further output was captured.
+ * === b. Protecting Shared Memory from Concurrent Writes ===
+ * Parent wrote: Parent write 0
+ * Child  wrote: Child  write 0
+ * Parent wrote: Parent write 1
+ * Child  wrote: Child  write 1
+ * Parent wrote: Parent write 2
+ * Child  wrote: Child  write 2
+ *
+ * Each write is complete and never interleaved with the other process.
  */
-

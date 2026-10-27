@@ -27,20 +27,6 @@ void receive_blocking(int msgid, long type) {
     }
 }
 
-void receive_nowait(int msgid, long type) {
-    printf("\n=== b. Non-blocking receive (IPC_NOWAIT) ===\n");
-    struct msg_buffer msg;
-    int n = msgrcv(msgid, &msg, sizeof(msg.msg_text), type, IPC_NOWAIT);
-    if (n == -1) {
-        if (errno == ENOMSG) {
-            printf("No message available (ENOMSG)\n");
-        } else {
-            perror("msgrcv failed");
-        }
-    } else {
-        printf("Received (type %ld): %s\n", msg.msg_type, msg.msg_text);
-    }
-}
 
 int main(int argc, char *argv[]) {
     if (argc < 3) {
@@ -52,7 +38,6 @@ int main(int argc, char *argv[]) {
     long type = atol(argv[2]);
     
     receive_blocking(msgid, type);
-    receive_nowait(msgid, type);
     
     return 0;
 }

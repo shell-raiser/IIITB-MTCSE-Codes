@@ -54,6 +54,10 @@ int main() {
  * Private message queue ID: 1
  *
  * Check with: ipcs -q
+ * 
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages    
+0x413664f1 0          kss        666        0            0           
  * Remove with: ipcrm -q 0
  */
 

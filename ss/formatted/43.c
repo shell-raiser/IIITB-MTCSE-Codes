@@ -55,3 +55,7 @@ int main(int argc, char *argv[]) {
  * Usage: /tmp/ss_run_43_48157 <message_queue_id>
  */
 
+//  Create a queue with ipcmk -Q, then pass that id:
+// ipcmk -Q          # -> Message queue id: 3
+// ./43 3            # then type 10 as the message type
+// ipcs -q           # verify: used-bytes 3, messages 1

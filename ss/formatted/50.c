@@ -84,7 +84,18 @@ int main() {
  * Output
  * Command: gcc 50.c -o 50
  *
- * Program timed out after 10 seconds while running.
- * No further output was captured.
+Created two semaphores: A(5) and B(6)
+Process 1 will lock A then B
+Process 2 will lock B then A
+This creates a deadlock!
+
+Process 1: Trying to lock A...
+Process 1: Locked A, sleeping 1s...
+Process 2: Trying to lock B...
+Process 2: Locked B, sleeping 1s...
+Process 1: Trying to lock B...
+Process 2: Trying to lock A...
+^C
+
  */
 

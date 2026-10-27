@@ -41,7 +41,13 @@ int main() {
  * Output
  * Command: gcc 62a.c -o 62a
  *
- * Program timed out after 10 seconds while running.
- * No further output was captured.
+PID: 131481
+Setting SIGINT to SIG_IGN using sigaction...
+Old handler saved. Try pressing Ctrl+C (should be ignored)
+^C
+Resetting SIGINT to SIG_DFL using sigaction...
+Now press Ctrl+C (should terminate program)
+^C
+
  */
 
