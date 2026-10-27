@@ -1,3 +1,6 @@
 [submodule "esd/ESD_Session"]
 	path = esd/ESD_Session
 	url = https://github.com/sivasomanath2502/ESD_Session.git
+[submodule "esd/ESD-Lab2"]
+	path = esd/ESD-Lab2
+	url = https://github.com/Harsh-Mohta9163/ESD-Lab2
